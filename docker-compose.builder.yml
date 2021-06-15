@@ -1,0 +1,23 @@
+version: '2'
+services:
+  base:
+    image: node:12
+    volumes:
+      - .:/usr/src/service
+    working_dir: /usr/src/service
+  install:
+    extends:
+      service: base
+    command: npm i
+  build:
+    extends:
+        service: base
+    command: npm run build
+  start:
+    extends:
+      service: base
+    command: npm run start 
+    ports: 
+      - 3111:3111
+      - 3112:3112
+  

@@ -1,0 +1,10 @@
+version: '3'
+services: 
+    dev_Server:
+        image: node:12
+        volumes: 
+            - .:/usr/src/service
+        working_dir: /usr/src/service
+        command: bash -c "npm run build && npm run server" 
+        ports: 
+            - 3112:3112
