@@ -1,6 +1,35 @@
 version: '3'
 services: 
-    dev_Server:
+    mongo:
+        image: mongo:4.1.6
+        restart: always
+        ports:
+            - 27017:27017
+        networks:
+            - MONGO
+        volumes:
+            - ./tmp/data/db:/data/db
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: mongoadmin
+            MONGO_INITDB_ROOT_PASSWORD: mongoadmin
+            
+    mongo-express:
+        image: mongo-express
+        restart: always
+        environment:
+            ME_CONFIG_OPTIONS_EDITORTHEME: 3024-night
+            ME_CONFIG_BASICAUTH_USERNAME: mongoexpress
+            ME_CONFIG_BASICAUTH_PASSWORD: mongoexpress
+            ME_CONFIG_MONGODB_ADMINUSERNAME: mongoadmin
+            ME_CONFIG_MONGODB_ADMINPASSWORD: mongoadmin
+        networks:
+            - MONGO
+        depends_on:
+            - mongo
+        ports:
+            - 8081:8081
+
+    dev:
         image: node:12
         volumes: 
             - .:/usr/src/service
@@ -8,3 +37,11 @@ services:
         command: bash -c "npm run build && npm run server" 
         ports: 
             - 3112:3112
+        networks:
+            - MONGO
+        depends_on:
+            - mongo
+
+networks:
+    MONGO:
+        name: MONGO

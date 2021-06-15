@@ -5,8 +5,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import config from '../webpack.config'
-
-
+import index from './routes/index'
 
 const app = express();
 const PORT = process.env.PORT || 3112;
@@ -26,11 +25,15 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler))
 
 
+// app.get('/',(req,res)=>{
+//    res.send("HELLO WORLD")
+// })
 
 app.get('/data',(req,res)=>{
-    res.send("HELLO WORLD")
+    res.send("HELLO WORLD Data")
 })
 
+app.use('/api',index);
 
 app.listen(PORT, () => {
     console.log(`Dev App listening to ${PORT}....`)

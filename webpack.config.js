@@ -5,7 +5,7 @@ const DEV_MODE = process.env.NODE_ENV === 'development';
 console.log(`DEV_MODE:${DEV_MODE}`);
 
 module.exports = {
-      context: path.resolve('server'),
+      context: path.resolve('src'),
       mode:process.env.NODE_ENV,
       devtool: DEV_MODE?'inline-source-map':false,
       entry:{
@@ -19,7 +19,7 @@ module.exports = {
       },
       resolve:{
         modules:[ //優先搜尋這些地方
-              path.resolve('server'),
+              path.resolve('src'),
               path.resolve('node_modules'),
           ],
         alias: {
