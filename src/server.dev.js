@@ -7,6 +7,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware'
 import bodyParser from 'body-parser'
 import config from '../webpack.config'
 import index from './routes/index'
+import swagger from './routes/swagger'
 
 const app = express();
 const PORT = process.env.PORT || 3112;
@@ -41,6 +42,7 @@ app.post('/register',(req, res) => {
 })
 
 app.use('/api',index);
+app.use('/swagger',swagger)
 
 app.listen(PORT, () => {
     console.log(`Dev App listening to ${PORT}....`)

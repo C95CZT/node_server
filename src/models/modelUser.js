@@ -1,5 +1,27 @@
 import mongoose from "./db";
 
+/**
+ * @swagger
+ * definitions:
+ *   User:
+ *     type: object
+ *     required:
+ *       - user_id
+ *       - user_name
+ *       - user_password
+ *       - create_time
+ *     properties:
+ *       user_id:
+ *         type: number
+ *       user_name:
+ *         type: string
+ *       user_password:
+ *         type: number
+ *       create_time:
+ *         type: number
+ */
+
+
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
