@@ -1,34 +1,33 @@
-import UserMoel from '../models/modelUser'
-import Constant from '../utils/constant' 
+import UserModel from '../models/modelUser'
+import RESULT from '../utils/constant' 
 import moment from 'moment';
 
 export default class User {
 
-    //注册用户
     async register(req, res, next) {
         let username = req.body.username;
         let userpassword = req.body.userpassword;
-        console.log("register model",username,userpassword)
         try {
             const userinfo = {
                 user_name: username,
                 user_password: userpassword,
                 create_time: moment().format('YYYY-MM-DD HH:mm')
             }
+            console.log("register userinfo",userinfo)
             await UserModel.create(userinfo,(err) => {
                 if (err) return handleError(err);
-                console.log("UserModel",userinfo)
             })
             res.json({
-                code: Constant.RESULT.SUCCESS.code,
-                msg: Constant.RESULT.SUCCESS.msg,
-                data: '注册成功',
+                code: RESULT.SUCCESS.code,
+                msg: RESULT.SUCCESS.msg,
+                data: 'Register Success',
             })
         } catch (err) {
+            console.log(err)
             res.json({
                 code: Constant.RESULT.FAILD.code,
                 msg: Constant.RESULT.FAILD.msg,
-                data: '注册失败',
+                data: 'Register Failed',
             })
         }
 

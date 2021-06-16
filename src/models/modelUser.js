@@ -14,7 +14,7 @@ const userSchema = new Schema({
 //建立索引  提高查询效率
 userSchema.index({user_id: 1})
 
-const userinfo = mongoose.model('userinfo', userSchema);
+const userModel = mongoose.model('userModel', userSchema);
 
-export default userinfo;
+export default userModel;
 
