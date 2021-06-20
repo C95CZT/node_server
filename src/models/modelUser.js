@@ -2,23 +2,28 @@ import mongoose from "./db";
 
 /**
  * @swagger
- * definitions:
- *   User:
- *     type: object
- *     required:
- *       - user_id
- *       - user_name
- *       - user_password
- *       - create_time
- *     properties:
- *       user_id:
- *         type: number
- *       user_name:
- *         type: string
- *       user_password:
- *         type: number
- *       create_time:
- *         type: number
+ * components:
+ *  schemas:
+ *      User:
+ *          type: object
+ *          required:
+ *              - user_name
+ *              - user_password
+ *  
+ *          properties:
+ *              user_id:
+ *                  type: string
+ *              user_name:
+ *                  type: string
+ *              user_password:
+ *                  type: string
+ *              create_time:
+ *                   type: string
+ * 
+ *  responses:
+ *      Success:
+ *          description: CREATE_SUCCESS.
+ * 
  */
 
 

@@ -1,26 +1,68 @@
 import express from 'express'
+import swaggerJsdoc from 'swagger-jsdoc';
 import User from '../controller/user'
 const router = express.Router();
 const user = new User();
 
 /**
  * @swagger
- * /register:
+ * /api/user/list:
+ *   get:
+ *     tags: [Users]
+ *     summary: Get an all user List.
+ *     responses:
+ *          200:
+ *              description: Suceess
+ *        
+ */
+router.get('/list',(req, res) => {
+    user.list(req,res)
+})
+
+/**
+ * @swagger
+ * /api/user/{user_name}:
+ *   get:
+ *      tags: [Users]
+ *      summary: Get an user .
+ *      parameters:
+ *         - in: path
+ *           name: user_name
+ *           required: true
+ *              
+ *      responses:
+ *          200:
+ *              description: Suceess
+ *        
+ */
+router.get('/:user_name',(req, res) => {
+    user.userInfo(req,res)
+})
+
+
+/**
+ * @swagger
+ * /api/user/register:
  *      post:
- *      summary: Create a JSONPlaceholder user.
- *      parameter:
- *      - name: username
- *        type: string
- *        in: body
- *        required: true
- *      - name: user
- *        type: string
- *        in: body
- *        required: true
+ *          tags: [Users]
+ *          summary: Create a JSONPlaceholder user.
  * 
-*/      
-
-
+ *          requestBody:
+ *              description: Optional description in *Markdown*
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/User'
+ * 
+ *          responses:
+ *              201:
+ *                  description: The created User.
+ *                  content:
+ *                       application/json:
+ *                          schema:
+ *                              $ref: '#/components/responses/Success'
+*/                      
 router.post('/register',(req, res) => {
     user.register(req, res)
 })
@@ -28,16 +70,46 @@ router.post('/register',(req, res) => {
 
 /**
  * @swagger
- * /data:
- *   get:
- *     description: Create Grid
- *     responses:
- *       200:
- *         description:  suceess
+ * /api/user/update:
+ *      patch:
+ *          tags: [Users]
+ *          summary: Update an user .
+ *          requestBody:
+ *              description: Optional description in *Markdown*
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/User'
+ *          responses:
+ *              200:
+ *                  description: Suceess
  *        
  */
-router.get('/data2',(req, res) => {
-    res.send("SUCCESS")
+router.patch('/update',(req,res) => {
+    user.update(req,res)
+})
+
+/**
+ * @swagger
+ * /api/user/delete:
+ *      delete:
+ *          tags: [Users]
+ *          summary: Detele an user By username .
+ *          requestBody:
+ *              description: Optional description in *Markdown*
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/User'
+ *          responses:
+ *              200:
+ *                  description: Suceess
+ *        
+ */
+router.delete('/delete',(req,res) => {
+    user.delete(req,res)
 })
 
 export default router

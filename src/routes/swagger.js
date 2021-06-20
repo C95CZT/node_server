@@ -7,6 +7,7 @@ import swaggerJSDoc from 'swagger-jsdoc';
 const router = express.Router()
 const options = {
   swaggerDefinition: {
+    openapi: '3.0.0',
     info: {
       title: 'REST - Swagger',
       version: '1.0.0',
@@ -17,8 +18,8 @@ const options = {
     },
     tags: [
       {
-        name: 'AMSS5',
-        description: 'AMSS5 API'
+        name: 'Users',
+        description: 'API to manage your users.'
       }
     ],
     schemes: ['http:127.0.0.1:3112'],

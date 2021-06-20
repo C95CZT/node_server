@@ -33,13 +33,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 //    res.send("HELLO WORLD")
 // })
 
-app.get('/data',(req,res)=>{
-    res.send("HELLO WORLD Data")
-})
-app.post('/register',(req, res) => {
-    console.log(req.body)
-    res.send(req.body)
-})
+// app.get('/data',(req,res)=>{
+//     res.send("HELLO WORLD Data")
+// })
+// app.post('/register',(req, res) => {
+//     console.log(req.body)
+//     res.send(req.body)
+// })
 
 app.use('/api',index);
 app.use('/swagger',swagger)
