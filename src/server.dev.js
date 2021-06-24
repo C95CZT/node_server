@@ -8,6 +8,7 @@ import bodyParser from 'body-parser'
 import config from '../webpack.config'
 import index from './routes/index'
 import swagger from './routes/swagger'
+import stream from './routes/rstp';
 
 const app = express();
 const PORT = process.env.PORT || 3112;
@@ -47,4 +48,5 @@ app.use('/swagger',swagger)
 app.listen(PORT, () => {
     console.log(`Dev App listening to ${PORT}....`)
     console.log('Press Ctrl+C to quit.')
+    stream.start()
 })

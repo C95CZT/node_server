@@ -30,7 +30,7 @@ services:
             - 8081:8081
 
     dev:
-        image: node:12
+        image: nodeplusffmpeg
         volumes: 
             - .:/usr/src/service
         working_dir: /usr/src/service
@@ -42,6 +42,22 @@ services:
         depends_on:
             - mongo
 
+
+    rtsp:
+        image: aler9/rtsp-simple-server
+        volumes: 
+            - .:/usr/src/rtsp
+        working_dir: /usr/src/rtsp 
+        environment:
+            - RTSP_PROTOCOLS=tcp
+        ports: 
+            - 8554:8554
+            - 1935:1935
+        networks:
+            - MONGO
+        depends_on:
+            - dev
+    
 networks:
     MONGO:
         name: MONGO
